@@ -8,7 +8,7 @@ namespace HelloWorldApplication
 	{
 		static async Task Main(string[] args)
 		{
-			var options = new RestClientOptions("https://reqres.in");			
+			var options = new RestClientOptions("https://reqres.in");
 			var client = new RestClient(options);
 			var request = new RestRequest("/api/users?page=1", Method.Get);
 			var body = @"";
@@ -29,7 +29,7 @@ namespace HelloWorldApplication
 		{
 			var options = new RestClientOptions("https://reqres.in");
 			var client = new RestClient(options);
-			var request = new RestRequest("/api/users?page=1",Method.Get);
+			var request = new RestRequest("/api/users?page=1", Method.Get);
 			RestResponse response = await client.ExecuteAsync(request);
 			Console.WriteLine(response.Content);
 		}
@@ -94,5 +94,20 @@ namespace HelloWorldApplication
 			RestResponse response = await client.ExecuteAsync(request);
 			Console.WriteLine(response.Content);
 		}
+		static async Task Main6(string[] args)
+		{
+			var options = new RestClientOptions("https://reqres.in");
+		var client = new RestClient(options);
+		var request = new RestRequest("/api/login", Method.Post);
+		request.AddHeader("Content-Type", "application/json");
+         var body = @"{
+         " + "\n" +
+	     @"    ""email"" : "" peter@klaven""
+          " + "\n" +
+	      @"}";
+		request.AddStringBody(body, DataFormat.Json);
+      RestResponse response = await client.ExecuteAsync(request);
+		Console.WriteLine(response.Content);
+		}
 	}
-}
+} 
