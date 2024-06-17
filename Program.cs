@@ -77,5 +77,22 @@ namespace HelloWorldApplication
 			RestResponse response = await client.ExecuteAsync(request);
 			Console.WriteLine(response.Content);
 		}
+		static async Task Main5(string[] args)
+		{
+			var options = new RestClientOptions("https://reqres.in");
+			var client = new RestClient(options);
+			var request = new RestRequest("/api/register", Method.Post);
+			request.AddHeader("Content-Type", "application/json");
+			var body = @"{
+            " + "\n" +
+			@"    ""email"" : "" eve.holt@reqres.in"",
+            " + "\n" +
+			@"    ""password"" : "" pistol""
+            " + "\n" +
+			@"}";
+			request.AddStringBody(body, DataFormat.Json);
+			RestResponse response = await client.ExecuteAsync(request);
+			Console.WriteLine(response.Content);
+		}
 	}
 }
