@@ -109,5 +109,14 @@ namespace HelloWorldApplication
       RestResponse response = await client.ExecuteAsync(request);
 		Console.WriteLine(response.Content);
 		}
+		static async Task Main7(string[] args)
+		{
+
+			var options = new RestClientOptions("https://reqres.in");
+			var client = new RestClient(options);
+			var request = new RestRequest("/api/users?delay=5", Method.Get);
+			RestResponse response = await client.ExecuteAsync(request);
+			Console.WriteLine(response.Content);
+		}
 	}
 } 
